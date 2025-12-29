@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praveen Jaiswal | Professional Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Container for content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header and Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 55px;
+            width: 55px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            top: 0;
+            left: -100%;
+            transition: left 0.7s;
+        }
+        
+        .logo:hover::before {
+            left: 100%;
+        }
+        
+        .logo-text {
+            font-size: 26px;
+            font-weight: 700;
+            color: #3a0ca3;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text span {
+            color: #4361ee;
+            font-weight: 600;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: #4361ee;
+        }
+        
+        nav a.active {
+            color: #3a0ca3;
+            font-weight: 600;
+        }
+        
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #3a0ca3;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            color: #3a0ca3;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            color: #222;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .cta-button.secondary {
+            background: white;
+            color: #4361ee;
+            border: 2px solid #4361ee;
+        }
+        
+        .cta-button.secondary:hover {
+            background: #4361ee;
+            color: white;
+        }
+        
+        /* Sections common styling */
+        .section {
+            padding: 100px 0;
+            display: none;
+            background-color: white;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 40px;
+            color: #222;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #4361ee, #3a0ca3);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Home Page Content */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4361ee, #3a0ca3);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 45px;
+            margin-bottom: 25px;
+            color: #3a0ca3;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 50%;
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .service-button {
+            display: inline-block;
+            background: #f0f3ff;
+            color: #4361ee;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e7ff;
+        }
+        
+        .service-button:hover {
+            background: #4361ee;
+            color: white;
+        }
+        
+        /* About Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: #555;
+            font-size: 17px;
+        }
+        
+        .skills {
+            margin-top: 30px;
+        }
+        
+        .skill-item {
+            margin-bottom: 25px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .skill-bar {
+            height: 12px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(to right, #4361ee, #3a0ca3);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .about-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        /* Contact Page */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px;
+            background: #f8f9ff;
+            border-radius: 15px;
+            border-left: 4px solid #4361ee;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            color: #3a0ca3;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1);
+        }
+        
+        .contact-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #222;
+        }
+        
+        .contact-text p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 20px;
+            background: #f8f9ff;
+            border: 1px solid #e0e7ff;
+            border-radius: 10px;
+            color: #333;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #4361ee;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        /* FAQs Page */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #e0e7ff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.1);
+        }
+        
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #222;
+            background: #f8f9ff;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: #4361ee;
+        }
+        
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 25px 25px;
+            max-height: 500px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 60px 0 30px;
+            color: white;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .footer-logo .logo {
+            width: 55px;
+            height: 55px;
+            font-size: 22px;
+        }
+        
+        .footer-logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-logo-text span {
+            color: #4cc9f0;
+        }
+        
+        .footer-about {
+            max-width: 600px;
+            text-align: center;
+            color: #b8c1ec;
+            line-height: 1.6;
+            font-size: 17px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 25px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+        
+        .social-links a.instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+        
+        .social-links a.instagram:hover {
+            box-shadow: 0 10px 20px rgba(225, 48, 108, 0.3);
+        }
+        
+        .social-links a.linkedin {
+            background: #0077B5;
+        }
+        
+        .social-links a.linkedin:hover {
+            box-shadow: 0 10px 20px rgba(0, 119, 181, 0.3);
+        }
+        
+        .copyright {
+            color: #b8c1ec;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+        
+        .highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .highlight:hover {
+            color: #7bdff2;
+            text-decoration: underline;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-buttons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+            
+            nav ul.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .about-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                padding: 14px 30px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .service-card {
+                padding: 25px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .contact-item {
+                padding: 20px;
+            }
+            
+            .social-links {
+                gap: 20px;
+            }
+            
+            .social-links a {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <!-- Your logo.png will be loaded here -->
+                        <img src="logo.png" alt="Praveen Jaiswal Logo" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='P'; this.parentElement.style.background='linear-gradient(135deg, #4361ee, #3a0ca3)';">
+                    </div>
+                    <div class="logo-text">Praveen<span>Jaiswal</span></div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul id="nav-menu">
+                        <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+                        <li><a href="#about" class="nav-link" data-page="about">About Me</a></li>
+                        <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+                        <li><a href="#faqs" class="nav-link" data-page="faqs">FAQs</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h1>Professional <span>Web Development</span> Solutions for Your Business</h1>
+                    <p>I create stunning, high-performance websites that drive results. With expertise in modern web technologies, I help businesses establish a strong online presence and achieve their digital goals.</p>
+                    <div>
+                        <a href="#contact" class="cta-button nav-link" data-page="contact"><i class="fas fa-paper-plane"></i> Start Your Project</a>
+                        <a href="#about" class="cta-button secondary nav-link" data-page="about"><i class="fas fa-user"></i> Learn About Me</a>
+                    </div>
+                </div>
+                
+                <div class="section-title">
+                    <h2>My Services</h2>
+                    <p>Comprehensive web development solutions tailored to your business needs</p>
+                </div>
+                
+                <div class="services">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Custom Website Development</h3>
+                        <p>Fully responsive, modern websites built with the latest technologies to represent your brand perfectly across all devices.</p>
+                        <a href="#contact" class="service-button nav-link" data-page="contact">Get Quote</a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>E-commerce Solutions</h3>
+                        <p>Secure online stores with payment integration, inventory management, and admin panels to grow your business online.</p>
+                        <a href="#contact" class="service-button nav-link" data-page="contact">Get Quote</a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Web App Development</h3>
+                        <p>Interactive web applications with dynamic functionality to streamline your business processes and improve efficiency.</p>
+                        <a href="#contact" class="service-button nav-link" data-page="contact">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Page -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About Me</h2>
+                    <p>Get to know my skills, experience, and approach to web development</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3 style="color: #3a0ca3; margin-bottom: 20px; font-size: 28px;">Hello, I'm <span style="color: #4361ee;">Praveen Jaiswal</span></h3>
+                        <p>I'm a passionate web developer with extensive experience in creating digital solutions that drive business growth. My expertise spans across frontend and backend technologies, allowing me to deliver complete, full-stack web applications.</p>
+                        
+                        <p>My approach combines technical expertise with strategic thinking to create websites that not only look great but also perform exceptionally well. I believe in building long-term relationships with clients by delivering exceptional value and outstanding results.</p>
+                        
+                        <div class="skills">
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <span>HTML5 / CSS3</span>
+                                    <span>98%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 98%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <span>JavaScript / React</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <span>Node.js / Express</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <span>MongoDB / MySQL</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-buttons">
+                            <a href="#contact" class="cta-button nav-link" data-page="contact"><i class="fas fa-envelope"></i> Contact Me</a>
+                            <a href="#faqs" class="cta-button secondary nav-link" data-page="faqs"><i class="fas fa-question-circle"></i> View FAQs</a>
+                        </div>
+                    </div>
+                    
+                    <div class="about-text">
+                        <h3 style="color: #3a0ca3; margin-bottom: 20px; font-size: 24px;">My Development Process</h3>
+                        
+                        <div style="background: #f8f9ff; padding: 25px; border-radius: 15px; border-left: 4px solid #4361ee; margin-bottom: 25px;">
+                            <h4 style="color: #222; margin-bottom: 10px;">1. Discovery & Planning</h4>
+                            <p style="color: #555; font-size: 16px;">I start by understanding your business goals, target audience, and project requirements to create a detailed development plan.</p>
+                        </div>
+                        
+                        <div style="background: #f8f9ff; padding: 25px; border-radius: 15px; border-left: 4px solid #4361ee; margin-bottom: 25px;">
+                            <h4 style="color: #222; margin-bottom: 10px;">2. Design & Development</h4>
+                            <p style="color: #555; font-size: 16px;">I create responsive designs and develop your website using modern technologies, with regular updates throughout the process.</p>
+                        </div>
+                        
+                        <div style="background: #f8f9ff; padding: 25px; border-radius: 15px; border-left: 4px solid #4361ee; margin-bottom: 25px;">
+                            <h4 style="color: #222; margin-bottom: 10px;">3. Testing & Launch</h4>
+                            <p style="color: #555; font-size: 16px;">Rigorous testing ensures your website works perfectly across all devices and browsers before the official launch.</p>
+                        </div>
+                        
+                        <div style="background: #f8f9ff; padding: 25px; border-radius: 15px; border-left: 4px solid #4361ee;">
+                            <h4 style="color: #222; margin-bottom: 10px;">4. Support & Maintenance</h4>
+                            <p style="color: #555; font-size: 16px;">I provide ongoing support and maintenance to keep your website secure, updated, and performing at its best.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Page -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Get In Touch</h2>
+                    <p>Ready to start your project? Contact me today for a free consultation</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Address</h4>
+                                <p class="highlight" id="email-link">Praveenjaiswal471@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone Number</h4>
+                                <p class="highlight" id="phone-link">+91 92449 44687</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Based in India, serving clients worldwide</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Working Hours</h4>
+                                <p>Monday - Saturday: 9 AM - 7 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button class="cta-button" id="email-btn" style="display: inline-block;"><i class="fas fa-envelope"></i> Send Email</button>
+                            <button class="cta-button secondary" id="phone-btn" style="display: inline-block; margin-left: 15px;"><i class="fas fa-phone"></i> Call Now</button>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3 style="color: #3a0ca3; margin-bottom: 20px; font-size: 24px;">Send Me a Message</h3>
+                        <form id="contactForm">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                            <input type="email" id="email" placeholder="Your Email" required>
+                            <input type="tel" id="phone" placeholder="Your Phone Number">
+                            <input type="text" id="project-type" placeholder="Project Type" required>
+                            <textarea rows="6" id="message" placeholder="Tell me about your project..." required></textarea>
+                            <button type="submit" class="cta-button" style="width: 100%;"><i class="fas fa-paper-plane"></i> Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQs Page -->
+        <section id="faqs" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Find answers to common questions about my web development services</p>
+                </div>
+                
+                <div class="faq-container">
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            <span>How much does a professional website cost?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Website costs vary based on complexity, features, and design requirements. Basic business websites start at ₹15,000, while e-commerce websites begin at ₹40,000. I provide a detailed quote after understanding your specific needs during our free consultation.</p>
+                            <div style="margin-top: 15px;">
+                                <a href="#contact" class="service-button nav-link" data-page="contact">Get Free Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How long does it take to build a website?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>A standard 5-7 page business website typically takes 2-3 weeks from start to finish. More complex projects like e-commerce websites or web applications may take 4-8 weeks. I provide a detailed timeline during our project planning phase.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do I need to provide content for my website?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you'll need to provide text content and images for your website. If you need help with content creation, I can recommend professional copywriters and photographers, or guide you on creating effective content yourself.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Will my website work on mobile devices?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! All websites I create are fully responsive and optimized for all devices - desktops, tablets, and smartphones. Mobile responsiveness is crucial for user experience and SEO, so it's a standard feature in all my projects.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What happens after my website is launched?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>After launch, I provide a 30-day support period to fix any issues. I also offer ongoing maintenance packages that include updates, security monitoring, backups, and technical support. You can choose a plan that fits your needs.</p>
+                            <div style="margin-top: 15px;">
+                                <a href="#contact" class="service-button nav-link" data-page="contact">Ask About Maintenance</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can you help with SEO and digital marketing?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, I implement SEO best practices during development to ensure your website is search-engine friendly. For comprehensive digital marketing strategies, I can recommend trusted marketing professionals who specialize in driving traffic and conversions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 50px;">
+                    <h3 style="color: #3a0ca3; margin-bottom: 20px;">Still have questions?</h3>
+                    <p style="color: #666; max-width: 600px; margin: 0 auto 25px;">Feel free to contact me directly. I'm happy to answer any questions you may have about web development for your business.</p>
+                    <a href="#contact" class="cta-button nav-link" data-page="contact"><i class="fas fa-comments"></i> Contact Me Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <!-- Your logo.png will be loaded here -->
+                        <img src="logo.png" alt="Praveen Jaiswal Logo" class="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='P'; this.parentElement.style.background='linear-gradient(135deg, #4361ee, #3a0ca3)';">
+                    </div>
+                    <div class="footer-logo-text">Praveen<span>Jaiswal</span></div>
+                </div>
+                
+                <p class="footer-about">Professional web developer creating modern, responsive, and high-performance websites that help businesses establish a strong online presence and achieve digital success.</p>
+                
+                <div class="social-links">
+                    <!-- Instagram Button -->
+                    <a href="https://www.instagram.com/praveen_jaiswal_00" target="_blank" class="instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                    <!-- LinkedIn Button -->
+                    <a href="https://www.linkedin.com/in/praveenjaiswal" target="_blank" class="linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                
+                <div style="text-align: center;">
+                    <p class="highlight" id="footer-email" style="color: #4cc9f0; font-size: 18px; display: block; margin-bottom: 10px; cursor: pointer;">
+                        <i class="fas fa-envelope"></i> Praveenjaiswal471@gmail.com
+                    </p>
+                    <p class="highlight" id="footer-phone" style="color: #4cc9f0; font-size: 18px; display: block; cursor: pointer;">
+                        <i class="fas fa-phone"></i> +91 92449 44687
+                    </p>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2023 Praveen Jaiswal | Professional Web Developer. All Rights Reserved.</p>
+                    <p style="margin-top: 10px;">Designed and developed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> by Praveen Jaiswal</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Telegram Bot Configuration
+        const TELEGRAM_BOT_TOKEN = '8219017831:AAH8SN0r2alD2K0RRtxh9VFoWulrnDAohv0';
+        const TELEGRAM_CHAT_ID = '7914096358';
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Navigation between pages
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Get the page to show
+                const pageId = link.getAttribute('data-page');
+                
+                // Update active nav link
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Show the selected page
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === pageId) {
+                        setTimeout(() => {
+                            section.classList.add('active');
+                        }, 50);
+                    }
+                });
+                
+                // Close mobile menu if open
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+                
+                // Scroll to top of the section
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // FAQ toggle functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                
+                // Close other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current FAQ item
+                faqItem.classList.toggle('active');
+            });
+        });
+        
+        // Email click functionality
+        const emailLinks = document.querySelectorAll('#email-link, #footer-email, #email-btn');
+        const phoneLinks = document.querySelectorAll('#phone-link, #footer-phone, #phone-btn');
+        
+        emailLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const subject = "Web Development Project Inquiry";
+                const body = "Hello Praveen,\n\nI am interested in getting a website developed. I would like to discuss my project requirements with you.\n\nPlease let me know when you're available for a discussion.\n\nBest regards,\n[Your Name]";
+                const mailtoLink = `mailto:Praveenjaiswal471@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                window.location.href = mailtoLink;
+            });
+        });
+        
+        phoneLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                window.location.href = 'tel:+919244944687';
+            });
+        });
+        
+        // Contact form submission with Telegram integration
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value || 'Not provided';
+            const projectType = document.getElementById('project-type').value;
+            const message = document.getElementById('message').value;
+            
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            // Show loading state
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitButton.disabled = true;
+            
+            try {
+                // Send message to Telegram bot
+                const telegramMessage = `🚀 *New Website Inquiry* 🚀\n\n` +
+                    `*Name:* ${name}\n` +
+                    `*Email:* ${email}\n` +
+                    `*Phone:* ${phone}\n` +
+                    `*Project Type:* ${projectType}\n` +
+                    `*Message:* ${message}\n\n` +
+                    `📞 *Call Back Required:* ${phone !== 'Not provided' ? 'Yes' : 'No'}`;
+                
+                const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                
+                const response = await fetch(telegramUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: telegramMessage,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.ok) {
+                    // Success - show alert and reset form
+                    alert(`Thank you ${name}! Your message has been sent successfully. I'll contact you at ${email} or ${phone} within 24 hours.`);
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Also send email
+                    const emailSubject = "Web Development Project Inquiry";
+                    const emailBody = `Hello Praveen,\n\nI am interested in getting a website developed. Here are my details:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nProject Type: ${projectType}\n\nMessage: ${message}\n\nPlease let me know when you're available for a discussion.\n\nBest regards,\n${name}`;
+                    
+                    // Open email client
+                    window.location.href = `mailto:Praveenjaiswal471@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                } else {
+                    throw new Error('Telegram API error');
+                }
+                
+            } catch (error) {
+                console.error('Error sending message:', error);
+                alert(`Thank you ${name}! Your message has been received. I'll contact you at ${email} or ${phone} within 24 hours.`);
+                
+                // Still open email client even if Telegram fails
+                const emailSubject = "Web Development Project Inquiry";
+                const emailBody = `Hello Praveen,\n\nI am interested in getting a website developed. Here are my details:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nProject Type: ${projectType}\n\nMessage: ${message}\n\nPlease let me know when you're available for a discussion.\n\nBest regards,\n${name}`;
+                
+                window.location.href = `mailto:Praveenjaiswal471@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                
+                // Reset form
+                contactForm.reset();
+            } finally {
+                // Reset button
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }
+        });
+        
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe service cards and skill bars
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceCards = document.querySelectorAll('.service-card');
+            const skillBars = document.querySelectorAll('.skill-progress');
+            
+            serviceCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.transition = 'width 1.5s ease-in-out';
+                    bar.style.width = width;
+                }, 300);
+            });
+            
+            // Animate buttons on page load
+            const buttons = document.querySelectorAll('.cta-button');
+            buttons.forEach((button, index) => {
+                button.style.opacity = '0';
+                button.style.transform = 'translateY(10px)';
+                
+                setTimeout(() => {
+                    button.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    button.style.opacity = '1';
+                    button.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            
+            // Instagram redirect
+            const instagramLink = document.querySelector('a.instagram');
+            instagramLink.addEventListener('click', function(e) {
+                this.href = "https://www.instagram.com/praveen_jaiswal_000/";
+            });
+        });
+    </script>
+</body>
+</html>
